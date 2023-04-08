@@ -1,10 +1,19 @@
-import { useState } from 'react'
+import {useState} from 'react'
 
-const Button = ({ handleClick, text }) => (
+const Button = ({handleClick, text}) => (
     <button onClick={handleClick}>
         {text}
     </button>
 )
+
+const MostPopularAnecdote = ({anecdotes, anecdotesVotes}) => {
+    return (
+        <div>
+            <h1>Anecdote with most votes</h1>
+            <p>{anecdotes[anecdotesVotes.indexOf(Math.max(...anecdotesVotes))]}</p>
+        </div>
+    )
+}
 
 const App = () => {
     const anecdotes = [
@@ -35,10 +44,12 @@ const App = () => {
 
     return (
         <div>
+            <h1>Anecdote of the day</h1>
             <p>{anecdotes[selected]}</p>
             <p>has {anecdotesVotes[selected]} votes</p>
             <Button handleClick={addVoteClick} text='vote'/>
             <Button handleClick={randomAnecdoteClick} text='next anecdote'/>
+            <MostPopularAnecdote anecdotes={anecdotes} anecdotesVotes={anecdotesVotes}/>
         </div>
     )
 }
