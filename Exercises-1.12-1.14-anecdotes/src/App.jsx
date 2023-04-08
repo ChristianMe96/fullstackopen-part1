@@ -7,10 +7,13 @@ const Button = ({handleClick, text}) => (
 )
 
 const MostPopularAnecdote = ({anecdotes, anecdotesVotes}) => {
+    const mostPopular = anecdotesVotes.indexOf(Math.max(...anecdotesVotes));
+
     return (
         <div>
             <h1>Anecdote with most votes</h1>
-            <p>{anecdotes[anecdotesVotes.indexOf(Math.max(...anecdotesVotes))]}</p>
+            <p>{anecdotes[mostPopular]}</p>
+            <p>has {anecdotesVotes[mostPopular]} votes</p>
         </div>
     )
 }
